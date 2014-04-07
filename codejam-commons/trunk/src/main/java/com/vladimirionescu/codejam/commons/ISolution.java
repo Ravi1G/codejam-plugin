@@ -1,4 +1,4 @@
-package com.vladionescu.codejam.commons;
+package com.vladimirionescu.codejam.commons;
 
 import java.io.BufferedReader;
 import java.io.IOException;
