@@ -28,16 +28,21 @@
             <artifactId>maven-plugin-annotations</artifactId>
             <version>3.2</version>
         </dependency>
-	<dependency>
+        <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-interactivity-api</artifactId>
             <version>1.0-alpha-6</version>
         </dependency>
-	<dependency>
-		<groupId>com.sun.jersey</groupId>
-		<artifactId>jersey-client</artifactId>
-		<version>1.8</version>
-	</dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
