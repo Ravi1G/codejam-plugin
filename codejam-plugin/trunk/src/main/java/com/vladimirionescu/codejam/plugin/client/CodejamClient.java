@@ -153,6 +153,8 @@ public class CodejamClient {
 			connectionData.setCookie(cookie);
 
 			retrieveMiddlewareToken();
+			
+			
 		} catch (ParseException e) {
 			//TODO
 			e.printStackTrace();
@@ -161,7 +163,7 @@ public class CodejamClient {
 	
 	private void checkMiddlewareToken()
 	{
-		if(connectionData.getMiddlewareTokenExpirationDate().before(new Date(System.currentTimeMillis())))
+		if(connectionData.getMiddlewareToken() != null || (connectionData.getMiddlewareTokenExpirationDate() != null && connectionData.getMiddlewareTokenExpirationDate().before(new Date(System.currentTimeMillis()))))
 		{
 			retrieveMiddlewareToken();
 		}
@@ -218,7 +220,38 @@ public class CodejamClient {
 	public void getContestData(String contestId) {
 		checkMiddlewareToken();
 		//TODO
+		/*
+		request_referer = 'http://{0}/codejam/contest/dashboard?c={1}'.format(
+			      host, contest_id)
+			  request_arguments = {
+			      'cmd': 'GetProblems',
+			      'contest': contest_id,
+			      }
+			  request_headers = {
+			      'Referer': request_referer,
+			      'Cookie': cookie,
+			      }
+			  try:
+			    status, reason, response = http_interface.Get(
+			        host, '/codejam/contest/dashboard/do', request_arguments,
+			        request_headers)
+		 */
+		WebResource codejamDashboardDo = client.resource("https://code.google.com/codejam/contest/dashboard/do");
+		String referer = "http://code.google.com/codejam/contest/dashboard?c=" + contestId;
+		ClientResponse response = codejamDashboardDo.queryParam("cmd", "GetProblems")
+							.queryParam("contest", contestId)
+							.header("cookie", connectionData.getCookie())
+							.header("Referer", referer)
+							.get(ClientResponse.class);
+		
+		System.out.println(response.getEntity(String.class));
 	}
+	
+	public static void main(String args[])
+	{
+		
+	}
+	
 
 
 }
