@@ -1,0 +1,1 @@
+A Maven plugin for automating Codejam related tasks
